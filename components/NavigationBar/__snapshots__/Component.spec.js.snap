@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavigationBarComponent Should render correctly 1`] = `
+<Navbar
+  bg="light"
+  collapseOnSelect={false}
+  expand="lg"
+  variant="light"
+>
+  <Container
+    fluid={false}
+  >
+    <NavbarBrand
+      href="/"
+    >
+      Shopping
+    </NavbarBrand>
+    <NavbarToggle
+      aria-controls="basic-navbar-nav"
+      label="Toggle navigation"
+    />
+    <NavbarCollapse
+      id="basic-navbar-nav"
+    >
+      <Nav
+        className="me-auto"
+        fill={false}
+        justify={false}
+      >
+        <NavLink
+          disabled={false}
+          href="/cart"
+        >
+          Card (
+          )
+        </NavLink>
+      </Nav>
+    </NavbarCollapse>
+  </Container>
+</Navbar>
+`;

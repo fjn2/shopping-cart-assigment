@@ -7,15 +7,14 @@ import { getAll } from '../api/product'
 import useProducts from '../store/product/hook'
 
 export async function getStaticProps({ params }) {
-  const products = await getAll()
-  const firstPage = products.slice(0, 3)
+  const { data: firstPage, meta } = await getAll({ offset: 0, count: 3 })
   return {
-    props: { products: firstPage }
+    props: { products: firstPage, totalProducts: meta.total }
   }
 }
 
-export default function Home({ products }) {
-  const { getNextPage } = useProducts({ initialProducts: products })
+export default function Home({ products: initialProducts, totalProducts }) {
+  const { getNextPage, products, hasMore } = useProducts({ initialProducts, totalProducts })
   return (
     <div className="container">
       <Head>
@@ -25,21 +24,24 @@ export default function Home({ products }) {
 
       <main>
         <h1 className="title">
-          Welcome to Product Catalog - assigment project
+          Welcome to Product Catalog project
         </h1>
 
         <p className="description">
           Select the items that you are interested on add to your basket
         </p>
-
+        <p>
+          Showing {products.length} out of {totalProducts} products
+        </p>
+        
         <Row>
           {products.map(product => {
-            return <Col xs={12} md={6} lg={4}><ProductCard {...product} /></Col>
+            return <Col xs={12} md={6} lg={4} key={product.id} style={{ margin: '8px 0' }}><ProductCard {...product} /></Col>
           })}
         </Row>
         <hr />
         <Row>
-          <Button onClick={() => getNextPage()}>Load More</Button>
+          <Button disabled={!hasMore} onClick={() => getNextPage()}>Load More</Button>
         </Row>
       </main>
     </div>

@@ -2,6 +2,7 @@ import Button from "react-bootstrap/Button"
 import InputGroup from "react-bootstrap/InputGroup"
 import FormControl from "react-bootstrap/FormControl"
 import FilterSelector from "../FilterSelector"
+import { useState } from "react"
 
 const OPTION_TYPES = {
   NUMBER: 'number',
@@ -41,9 +42,19 @@ const getFilterOptions = (itemOptions) => {
 }
 
 const ProductDescriptionComponent = (props) => {
-  const { id, name, brand, price, available, weight, options } = props
+  const { id, name, brand, price, available, weight, options, onItemAdd } = props
+  
+  const [itemOptions, setItemOptions] = useState({})
+  const [quantity, setQuantity] = useState(0)
+
   const productOptions = getFilterOptions(options)
   
+  const onOptionChange = (optionKey) => (optionValue) => {
+    setItemOptions({
+      ...itemOptions,
+      [optionKey]: optionValue
+    })
+  }
   return (
     <div id={id}>
       <h1>{name}</h1>
@@ -64,20 +75,26 @@ const ProductDescriptionComponent = (props) => {
           Object.keys(productOptions).map((optionKey) => (
             <div style={{ width: '300px' }}>
               <span style={{ textTransform: 'capitalize' }}>{optionKey}</span>
-              <FilterSelector options={productOptions[optionKey]} />
+              <FilterSelector options={productOptions[optionKey]} onChange={onOptionChange(optionKey)} value={itemOptions[optionKey]} />
             </div>
           ))
         }
         <div style={{ width: '300px' }}>
           <span>Quantity</span>
           <InputGroup style={{ width: '70px' }}>
-            <FormControl type="number" aria-label="Quantity" min={0} max={99} />
+            <FormControl type="number" aria-label="Quantity" min={0} max={99} value={quantity} onChange={e => setQuantity(e.target.value)} />
           </InputGroup>
         </div>
       </div>
       <hr />
       <div>
-        <Button>Add to cart</Button>
+        <Button onClick={() => onItemAdd({
+          id,
+          name,
+          price,
+          quantity,
+          itemOptions
+        })}>Add to cart</Button>
       </div>
     </div>
   )

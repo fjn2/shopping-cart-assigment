@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductImage Should render correctly 1`] = `
+<div
+  style={
+    Object {
+      "aspectRatio": "1",
+    }
+  }
+>
+  <img
+    src="https://avatars.dicebear.com/api/jdenticon/undefined.svg"
+    variant="top"
+  />
+</div>
+`;

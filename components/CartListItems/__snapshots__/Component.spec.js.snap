@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CartListItems Should render correctly 1`] = `
+<div>
+  <Row>
+    <Col>
+      <ProductImage
+        name="Test product_124"
+      />
+    </Col>
+    <Col>
+      Test product
+    </Col>
+    <Col>
+      Test brand name
+    </Col>
+    <Col>
+      124
+       sek
+    </Col>
+    <Col>
+      <div
+        key="color"
+      >
+        <span
+          style={
+            Object {
+              "textTransform": "capitalize",
+            }
+          }
+        >
+          color
+          : 
+        </span>
+        <b>
+          red
+        </b>
+      </div>
+    </Col>
+    <Col />
+    <Col>
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        variant="primary"
+      >
+        Remove
+      </Button>
+    </Col>
+  </Row>
+</div>
+`;

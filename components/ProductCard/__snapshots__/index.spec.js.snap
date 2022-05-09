@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductCard Should render correctly 1`] = `
+<a
+  href="details/10"
+>
+  <Card
+    body={false}
+    style={
+      Object {
+        "display": "flex",
+      }
+    }
+  >
+    <CardImg
+      src="https://avatars.dicebear.com/api/jdenticon/Test product_124.svg"
+      variant="top"
+    />
+    <CardBody>
+      <CardTitle>
+        Test product
+      </CardTitle>
+      <CardText>
+        <b>
+          Test brand name
+        </b>
+      </CardText>
+      <span>
+        124
+         sek
+      </span>
+    </CardBody>
+  </Card>
+</a>
+`;

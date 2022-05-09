@@ -10,6 +10,13 @@ export const getById = async (id) => {
   return product
 }
 
-export const getAll = async () => {
-  return db.items
+export const getAll = async ({ offset, count } = {}) => {
+  return {
+    data: db.items.slice(offset || 0, (offset + count) || db.items.length),
+    meta: {
+      total: db.items.length,
+      count,
+      offset
+    }
+  }
 }

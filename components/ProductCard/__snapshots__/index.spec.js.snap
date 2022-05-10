@@ -1,8 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ProductCard Should render correctly 1`] = `
+exports[`ProductCard Should render an unavailable product 1`] = `
 <a
   href="details/10"
+  style={
+    Object {
+      "color": "inherit",
+      "textDecoration": "none",
+    }
+  }
 >
   <Card
     body={false}
@@ -14,6 +20,57 @@ exports[`ProductCard Should render correctly 1`] = `
   >
     <CardImg
       src="https://avatars.dicebear.com/api/jdenticon/Test product_124.svg"
+      style={
+        Object {
+          "filter": "grayscale(1)",
+        }
+      }
+      variant="top"
+    />
+    <CardBody>
+      <CardTitle>
+        [X] 
+        Test product
+      </CardTitle>
+      <CardText>
+        <b>
+          Test brand name
+        </b>
+      </CardText>
+      <span>
+        124
+         sek
+      </span>
+    </CardBody>
+  </Card>
+</a>
+`;
+
+exports[`ProductCard Should render correctly 1`] = `
+<a
+  href="details/10"
+  style={
+    Object {
+      "color": "inherit",
+      "textDecoration": "none",
+    }
+  }
+>
+  <Card
+    body={false}
+    style={
+      Object {
+        "display": "flex",
+      }
+    }
+  >
+    <CardImg
+      src="https://avatars.dicebear.com/api/jdenticon/Test product_124.svg"
+      style={
+        Object {
+          "filter": "grayscale(0)",
+        }
+      }
       variant="top"
     />
     <CardBody>

@@ -5,6 +5,7 @@ exports[`ProductImage Should render correctly 1`] = `
   style={
     Object {
       "aspectRatio": "1",
+      "filter": "grayscale(1)",
     }
   }
 >

@@ -1,8 +1,10 @@
 import Button from "react-bootstrap/Button"
 import InputGroup from "react-bootstrap/InputGroup"
 import FormControl from "react-bootstrap/FormControl"
+import Alert from "react-bootstrap/Alert"
 import FilterSelector from "../FilterSelector"
 import { useState } from "react"
+import getAvailableQuantity from "../../utils/getAvailableQuantity"
 
 const OPTION_TYPES = {
   NUMBER: 'number',
@@ -41,24 +43,41 @@ const getFilterOptions = (itemOptions) => {
   return output
 }
 
+const getInitialSelectedItemOptions = (options) => {
+  return Object.keys(options).reduce((acc, optionKey) => ({
+    ...acc,
+    [optionKey]: options[optionKey][0]
+  }), {})
+}
+
 const ProductDescriptionComponent = (props) => {
   const { id, name, brand, price, available, weight, options, onItemAdd } = props
   
-  const [itemOptions, setItemOptions] = useState({})
-  const [quantity, setQuantity] = useState(0)
+  const [quantity, setQuantity] = useState(1)
 
   const productOptions = getFilterOptions(options)
-  
+  const [itemOptions, setItemOptions] = useState(getInitialSelectedItemOptions(productOptions))
+
   const onOptionChange = (optionKey) => (optionValue) => {
     setItemOptions({
       ...itemOptions,
       [optionKey]: optionValue
     })
   }
+
+  const availableQuantity = getAvailableQuantity(options, itemOptions)
+
+  const isItemAvailableWithStock = availableQuantity && available
+
   return (
     <div id={id}>
-      <h1>{name}</h1>
+      <h1>{isItemAvailableWithStock ? '' : '[X] '}{name}</h1>
       <h3>{brand}</h3>
+      {!isItemAvailableWithStock && (
+        <Alert variant="warning">
+          There is no stock for this product
+        </Alert>
+      )}
       <div>
         <div>
           <span>Weight</span>
@@ -73,28 +92,34 @@ const ProductDescriptionComponent = (props) => {
       <div>
         {
           Object.keys(productOptions).map((optionKey) => (
-            <div style={{ width: '300px' }}>
+            <div key={optionKey} style={{ width: '300px' }}>
               <span style={{ textTransform: 'capitalize' }}>{optionKey}</span>
               <FilterSelector options={productOptions[optionKey]} onChange={onOptionChange(optionKey)} value={itemOptions[optionKey]} />
             </div>
           ))
         }
         <div style={{ width: '300px' }}>
-          <span>Quantity</span>
+          <span>Quantity ({`Avaiable: ${availableQuantity}`})</span>
           <InputGroup style={{ width: '70px' }}>
-            <FormControl type="number" aria-label="Quantity" min={0} max={99} value={quantity} onChange={e => setQuantity(e.target.value)} />
+            <FormControl type="number" aria-label="Quantity" min={1} max={availableQuantity} value={quantity} onChange={e => setQuantity(e.target.value)} />
           </InputGroup>
         </div>
       </div>
       <hr />
       <div>
-        <Button onClick={() => onItemAdd({
-          id,
-          name,
-          price,
-          quantity,
-          itemOptions
-        })}>Add to cart</Button>
+        <Button
+          onClick={() => onItemAdd({
+            id,
+            name,
+            price,
+            brand,
+            quantity,
+            itemOptions
+          })}
+          disabled={!isItemAvailableWithStock}
+        >
+          Add to cart
+        </Button>
       </div>
     </div>
   )

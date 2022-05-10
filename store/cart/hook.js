@@ -1,7 +1,7 @@
-import { useState, useEffect, createContext, useContext } from 'react'
+import { createContext, useContext } from 'react'
 import useLocalStorage from '../../utils/useLocalStorage'
 
-export const StoreContext = createContext({})
+const StoreContext = createContext({})
 
 /**
  * Create a key to identify the item in the cart
@@ -33,6 +33,7 @@ export const CartContext = ({
     id,
     name,
     price,
+    brand,
     quantity,
     itemOptions
   }) => {
@@ -51,7 +52,8 @@ export const CartContext = ({
           id,
           name,
           price,
-          quantity: quantity + userCart[key].quantity,
+          brand,
+          quantity: (+quantity) + (+userCart[key].quantity),
           itemOptions
         }
       })
@@ -63,6 +65,7 @@ export const CartContext = ({
           id,
           name,
           price,
+          brand,
           quantity,
           itemOptions
         }
@@ -79,6 +82,7 @@ export const CartContext = ({
     id,
     name,
     price,
+    brand,
     quantity,
     itemOptions
   }) => {
@@ -95,6 +99,7 @@ export const CartContext = ({
         id,
         name,
         price,
+        brand,
         quantity,
         itemOptions
       }
@@ -102,7 +107,6 @@ export const CartContext = ({
   }
 
   return (
-    // eslint-disable-next-line react/react-in-jsx-scope
     <StoreContext.Provider
       value={{
         cart: userCart,

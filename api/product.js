@@ -10,11 +10,12 @@ export const getById = async (id) => {
   return product
 }
 
-export const getAll = async ({ offset, count } = {}) => {
+export const getAll = async ({ name }, { offset, count } = {}) => {
+  const filteredItems = name ? db.items.filter((item) => (item.name.toUpperCase().indexOf(name.toUpperCase()) > -1)) : db.items
   return {
-    data: db.items.slice(offset || 0, (offset + count) || db.items.length),
+    data: filteredItems.slice(offset || 0, (offset + count) || db.items.length),
     meta: {
-      total: db.items.length,
+      total: filteredItems.length,
       count,
       offset
     }

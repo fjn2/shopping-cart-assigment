@@ -1,24 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CartListItems Should render correctly 1`] = `
-<div>
-  <Row>
-    <Col>
+<div
+  style={
+    Object {
+      "textAlign": "left",
+    }
+  }
+>
+  <Row
+    key="itemId1"
+  >
+    <Col
+      className="d-none d-md-block"
+    >
       <ProductImage
+        available={true}
         name="Test product_124"
       />
     </Col>
     <Col>
-      Test product
-    </Col>
-    <Col>
-      Test brand name
+      <a
+        href="details/10"
+      >
+        Test product
+         
+        <span
+          className="d-none d-md-block"
+        >
+          - 
+          Test brand name
+        </span>
+      </a>
     </Col>
     <Col>
       124
        sek
     </Col>
-    <Col>
+    <Col
+      className="d-none d-md-block"
+    >
       <div
         key="color"
       >
@@ -37,13 +58,42 @@ exports[`CartListItems Should render correctly 1`] = `
         </b>
       </div>
     </Col>
-    <Col />
     <Col>
+      <InputGroup>
+        <FormControl
+          aria-label="Quantity"
+          isInvalid={false}
+          max={0}
+          min={1}
+          onChange={[Function]}
+          type="number"
+        />
+        <Feedback
+          type="invalid"
+        >
+          max 
+          0
+           items
+        </Feedback>
+      </InputGroup>
+    </Col>
+    <Col
+      style={
+        Object {
+          "flex": "0 0 90px",
+        }
+      }
+    >
       <Button
         active={false}
         disabled={false}
         onClick={[Function]}
-        variant="primary"
+        style={
+          Object {
+            "margin": "0 4px",
+          }
+        }
+        variant="danger"
       >
         Remove
       </Button>

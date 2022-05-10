@@ -1,15 +1,12 @@
-import Col from "react-bootstrap/Col"
-import Row from "react-bootstrap/Row"
 import Card from "react-bootstrap/Card"
 
-
-const ProductCard = ({ id, name, brand, price }) => {
+const ProductCard = ({ id, name, brand, price, available }) => {
   return (
-    <a href={`details/${id}`}>
+    <a href={`details/${id}`} style={{ color: 'inherit', textDecoration: 'none'}}>
       <Card style={{ display: 'flex'}}>
-        <Card.Img variant="top" src={`https://avatars.dicebear.com/api/jdenticon/${name}_${price}.svg`} />
+        <Card.Img style={{ filter: `grayscale(${available ? 0 : 1})` }} variant="top" src={`https://avatars.dicebear.com/api/jdenticon/${name}_${price}.svg`} />
         <Card.Body>
-          <Card.Title>{name}</Card.Title>
+          <Card.Title>{available ? '' : '[X] '}{name}</Card.Title>
           <Card.Text>
             <b>{brand}</b>
           </Card.Text>

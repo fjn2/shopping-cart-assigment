@@ -15,6 +15,7 @@ describe('CartListItems', () => {
           }
         }
       },
+      products:[],
       onItemRemove: jest.fn()
     }
 
@@ -35,6 +36,7 @@ describe('CartListItems', () => {
           }
         }
       },
+      products: [],
       onItemRemove: jest.fn()
     }
 

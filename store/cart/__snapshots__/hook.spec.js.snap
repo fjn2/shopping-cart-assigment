@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cart hook Should add items to the cart 1`] = `
+<CartContext>
+  <TestConsumer>
+    {"{\\"id\\":1,\\"name\\":\\"Test Name\\",\\"price\\":123,\\"itemOptions\\":[{\\"color\\":[\\"red\\"]}]}":{"id":1,"name":"Test Name","price":123,"brand":"Test brand","quantity":2,"itemOptions":[{"color":["red"]}]}}
+  </TestConsumer>
+</CartContext>
+`;
+
+exports[`Cart hook Should initialize the cart correctly 1`] = `
+<CartContext>
+  <TestConsumer>
+    {}
+  </TestConsumer>
+</CartContext>
+`;
+
+exports[`Cart hook Should remove an item from the cart correctly 1`] = `
+<CartContext>
+  <TestConsumer>
+    {}
+  </TestConsumer>
+</CartContext>
+`;
+
+exports[`Cart hook Should update an item from the cart correctly 1`] = `
+<CartContext>
+  <TestConsumer>
+    {"{\\"id\\":1,\\"name\\":\\"Test Name\\",\\"price\\":123,\\"itemOptions\\":[{\\"color\\":[\\"red\\"]}]}":{"id":1,"name":"Test Name","price":123,"brand":"Test brand","quantity":5,"itemOptions":[{"color":["red"]}]}}
+  </TestConsumer>
+</CartContext>
+`;
